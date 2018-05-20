@@ -9,18 +9,22 @@ public class CountDownLatchTest {
     private static CountDownLatch countDownLatch = new CountDownLatch(MAX_THRED_NUM);
 
     public static void main(String[] args) {
-
-        countDownLatch.countDown();
+        for (int i = 0; i < MAX_THRED_NUM; i++) {
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    countDownLatch.countDown();
+                }
+            };
+            runnable.run();
+        }
+        System.out.println(countDownLatch.getCount());
         try {
+            countDownLatch.await();
 
-            for (int i = 0; i < MAX_THRED_NUM; i++){
-
-            }
-                countDownLatch.await();
+            System.out.println("finish");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(countDownLatch.getCount());
-
     }
 }
