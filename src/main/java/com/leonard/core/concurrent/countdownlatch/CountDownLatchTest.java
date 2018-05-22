@@ -9,7 +9,7 @@ public class CountDownLatchTest {
     private static CountDownLatch countDownLatch = new CountDownLatch(MAX_THRED_NUM);
 
     public static void main(String[] args) {
-        for (int i = 0; i < MAX_THRED_NUM; i++) {
+        for (int i = 0; i < 9; i++) {
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
@@ -21,7 +21,6 @@ public class CountDownLatchTest {
         System.out.println(countDownLatch.getCount());
         try {
             countDownLatch.await();
-
             System.out.println("finish");
         } catch (InterruptedException e) {
             e.printStackTrace();
